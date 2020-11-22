@@ -20,7 +20,7 @@ enum direction{
     左,
     右前,
     左前,
-    停まる,
+    止まる,
     ニュートラル,
 }
 
@@ -38,16 +38,16 @@ enum kyori{
     長い,
 }
 enum sonar_avg{
-    中速中精度,
-    低速高精度,
-    高速低精度,
+  低速高精度,
+  中速中精度,
+  高速低精度,
 }
 
 let con_le = 0;
 let con_op = 0;
 
 
-//% color="#3943c6" block="ﾕｰﾚｶ･ｶｰVer0.91" icon="\uf1b9"
+//% color="#3943c6" block="ﾕｰﾚｶ･ｶｰVer0.92" icon="\uf1b9"
 
 namespace eureka_blocks_car {
   //% color="#ff3d03" weight=59 blockId=eurekacar_buz_set block="ﾕｰﾚｶ車で音をならす" group="1_初期設定"
@@ -113,7 +113,7 @@ namespace eureka_blocks_car {
             pins.servoWritePin(AnalogPin.P14,80);
             pins.servoWritePin(AnalogPin.P13, 120);
         break;
-        case direction.停まる:
+        case direction.止まる:
             pins.servoWritePin(AnalogPin.P13, 90);
             pins.servoWritePin(AnalogPin.P14, 90);
         break;
@@ -169,6 +169,14 @@ namespace eureka_blocks_car {
         break;
     }
   }
+
+  //% color="#1E90FF" weight=51 block="待ち時間 |%second| （秒）小数は直接入力" group="3　基本の動き"
+  //% second.min=0 second.max=10
+  export function driveForwards(second: number): void {
+    basic.pause(second * 1000);
+  }
+
+
 
   //% color="#f071bd" weight=30 blockId=auto_photo_R block="右ﾌｫﾄﾘﾌﾚｸﾀｰ" group="4　センサー"
   export function phto_R() {
